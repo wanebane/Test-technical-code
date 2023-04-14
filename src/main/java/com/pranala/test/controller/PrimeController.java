@@ -19,6 +19,6 @@ public class PrimeController {
 
     @GetMapping()
     public ResponseEntity<Object> generatePrimeNumbers(@RequestParam("limit") int limit){
-        return ResponseEntity.ok(primeServices.generatePrimeUsingIntStream(limit));
+        return ResponseEntity.ok(primeServices.generatePrimeNumbers(limit));
     }
 }

@@ -28,8 +28,8 @@ class PrimaServicesTest {
     void generatePrimeNumbers_limit30(){
         int limit = 30;
         Stream<Integer> expected = Stream.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
-        assertArrayEquals(expected.toArray(), primaServices.generatePrimeUsingIntStream(limit).toArray());
-        log.info("Result {}", primaServices.generatePrimeUsingIntStream(limit).collect(Collectors.toList()));
+        assertArrayEquals(expected.toArray(), primaServices.generatePrimeNumbers(limit).toArray());
+        log.info("Result {}", primaServices.generatePrimeNumbers(limit).collect(Collectors.toList()));
     }
 
     @Test
@@ -37,8 +37,8 @@ class PrimaServicesTest {
     void countPrimeNumbers_limit20(){
         int limit = 20;
         int expected = 8;
-        assertEquals(expected, primaServices.generatePrimeUsingIntStream(limit).count());
-        log.info("Result Count : {}", primaServices.generatePrimeUsingIntStream(limit).count());
+        assertEquals(expected, primaServices.generatePrimeNumbers(limit).count());
+        log.info("Result Count : {}", primaServices.generatePrimeNumbers(limit).count());
     }
 
     @Test
@@ -46,15 +46,15 @@ class PrimaServicesTest {
     void generatePrimeNumbers_limit0And1(){
         int limit0 = 0;
         List<Integer> expected0 = List.of(0);
-        assertArrayEquals(expected0.toArray(), primaServices.generatePrimeUsingIntStream(limit0).toArray());
+        assertArrayEquals(expected0.toArray(), primaServices.generatePrimeNumbers(limit0).toArray());
 
-        log.info("Result limit {} -> {}", limit0, primaServices.generatePrimeUsingIntStream(limit0).toArray());
+        log.info("Result limit {} -> {}", limit0, primaServices.generatePrimeNumbers(limit0).toArray());
 
         int limit1 = 1;
         List<Integer> expected1 = List.of(1);
-        assertArrayEquals(expected1.toArray(), primaServices.generatePrimeUsingIntStream(limit1).toArray());
+        assertArrayEquals(expected1.toArray(), primaServices.generatePrimeNumbers(limit1).toArray());
 
-        log.info("Result limit {} -> {}", limit1, primaServices.generatePrimeUsingIntStream(limit1).toArray());
+        log.info("Result limit {} -> {}", limit1, primaServices.generatePrimeNumbers(limit1).toArray());
     }
 
 }

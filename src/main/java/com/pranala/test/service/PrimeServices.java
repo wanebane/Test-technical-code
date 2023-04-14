@@ -9,7 +9,7 @@ public class PrimeServices {
         return limit == 0 || limit == 1;
     }
 
-    public Stream<Integer> generatePrimeUsingIntStream(int limit){
+    public Stream<Integer> generatePrimeNumbers(int limit){
         if (checkLimit(limit)) {
             return Stream.of(limit);
         }

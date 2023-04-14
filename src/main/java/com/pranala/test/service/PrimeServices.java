@@ -1,7 +1,7 @@
 package com.pranala.test.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class PrimeServices {
 
@@ -9,24 +9,14 @@ public class PrimeServices {
         return limit == 0 || limit == 1;
     }
 
-    public List<Integer> generatePrimeNumbers(int limit) {
+    public Stream<Integer> generatePrimeUsingIntStream(int limit){
         if (checkLimit(limit)) {
-            return List.of(limit);
+            return Stream.of(limit);
         }
+        return IntStream.range(2, limit).filter(this::isPrime).boxed();
+    }
 
-        List<Integer> result = new ArrayList<>();
-        for (int i = 2; i < limit; i++) {
-            int count = 0;
-            for (int j = 2; j <= i / 2; j++) {
-                if (i % j == 0) {
-                    count++;
-                    break;
-                }
-            }
-            if (count == 0) {
-                result.add(i);
-            }
-        }
-        return result;
+    public boolean isPrime(int number){
+        return IntStream.range(2, number).noneMatch(v -> number % v == 0);
     }
 }

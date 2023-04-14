@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,9 +27,9 @@ class PrimaServicesTest {
     @DisplayName("Generate Prime Numbers until 30")
     void generatePrimeNumbers_limit30(){
         int limit = 30;
-        List<Integer> expected = List.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
-        assertEquals(expected, primaServices.generatePrimeNumbers(limit));
-        log.info("Result {}", primaServices.generatePrimeNumbers(limit));
+        Stream<Integer> expected = Stream.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+        assertArrayEquals(expected.toArray(), primaServices.generatePrimeUsingIntStream(limit).toArray());
+        log.info("Result {}", primaServices.generatePrimeUsingIntStream(limit).collect(Collectors.toList()));
     }
 
     @Test
@@ -35,8 +37,8 @@ class PrimaServicesTest {
     void countPrimeNumbers_limit20(){
         int limit = 20;
         int expected = 8;
-        assertEquals(expected, primaServices.generatePrimeNumbers(limit).size());
-        log.info("Result Count : {}", primaServices.generatePrimeNumbers(limit).size());
+        assertEquals(expected, primaServices.generatePrimeUsingIntStream(limit).count());
+        log.info("Result Count : {}", primaServices.generatePrimeUsingIntStream(limit).count());
     }
 
     @Test
@@ -44,15 +46,15 @@ class PrimaServicesTest {
     void generatePrimeNumbers_limit0And1(){
         int limit0 = 0;
         List<Integer> expected0 = List.of(0);
-        assertEquals(expected0, primaServices.generatePrimeNumbers(limit0));
+        assertArrayEquals(expected0.toArray(), primaServices.generatePrimeUsingIntStream(limit0).toArray());
 
-        log.info("Result limit {} -> {}", limit0, primaServices.generatePrimeNumbers(limit0));
+        log.info("Result limit {} -> {}", limit0, primaServices.generatePrimeUsingIntStream(limit0).toArray());
 
         int limit1 = 1;
         List<Integer> expected1 = List.of(1);
-        assertEquals(expected1, primaServices.generatePrimeNumbers(limit1));
+        assertArrayEquals(expected1.toArray(), primaServices.generatePrimeUsingIntStream(limit1).toArray());
 
-        log.info("Result limit {} -> {}", limit1, primaServices.generatePrimeNumbers(limit1));
+        log.info("Result limit {} -> {}", limit1, primaServices.generatePrimeUsingIntStream(limit1).toArray());
     }
 
 }

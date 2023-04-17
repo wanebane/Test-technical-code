@@ -13,7 +13,7 @@ public class PrimeServices {
         if (checkLimit(limit)) {
             return Stream.of(limit);
         }
-        return IntStream.range(2, limit).filter(this::isPrime).boxed();
+        return IntStream.range(2, limit + 1).filter(this::isPrime).boxed();
     }
 
     public boolean isPrime(int number){
